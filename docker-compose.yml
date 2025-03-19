@@ -1,0 +1,13 @@
+services:
+  tls-test-postgres:
+    image: healthcheck/postgres:alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - ./tls/server.crt:/server.crt
+      - ./tls/server.key:/server.key
+      - ./tls/ssl.sh:/docker-entrypoint-initdb.d/ssl.sh
