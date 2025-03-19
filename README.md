@@ -66,3 +66,23 @@ If you want to learn more about building native executables, please consult <htt
 Easily start your REST Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+## Running the DB
+
+```shell script
+docker compose up --build -V
+```
+
+## Measuring RSS without buffer pooling
+
+```shell script
+java -jar target/quarkus-app/quarkus-run.jar
+ps --pid 28364 -o pid,rss,command
+```
+
+## Measuring RSS with buffer pooling
+
+```shell script
+java -Dquarkus.http.server.ssl.jdk.bufferPooling=true -jar target/quarkus-app/quarkus-run.jar
+ps --pid 28364 -o pid,rss,command
+```
